@@ -4,6 +4,7 @@ package devsupeior.SistemaEventos.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_participant")
@@ -67,5 +68,18 @@ public class Participant {
 
     public void setActivities(List<Activities> activities) {
         this.activities = activities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Participant that = (Participant) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

@@ -4,6 +4,7 @@ package devsupeior.SistemaEventos.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_block")
@@ -66,5 +67,18 @@ public class Block {
 
     public void setActivities(Activities activities) {
         this.activities = activities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Block block = (Block) o;
+        return Objects.equals(id, block.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
