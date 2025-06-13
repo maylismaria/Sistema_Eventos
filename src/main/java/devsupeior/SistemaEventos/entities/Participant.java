@@ -3,6 +3,8 @@ package devsupeior.SistemaEventos.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_participant")
 public class Participant {
@@ -15,6 +17,15 @@ public class Participant {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_participant_activities",
+            joinColumns = @JoinColumn(name = "participant_id"),
+            inverseJoinColumns = @JoinColumn(name = "activities_id")
+    )
+    private List<Activities> activities;
+
 
     public Participant(){
 
@@ -50,5 +61,11 @@ public class Participant {
         this.name = name;
     }
 
+    public List<Activities> getActivities() {
+        return activities;
+    }
 
+    public void setActivities(List<Activities> activities) {
+        this.activities = activities;
+    }
 }

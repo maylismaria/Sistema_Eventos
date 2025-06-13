@@ -19,6 +19,10 @@ public class Block {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant endTime;
 
+    @ManyToOne
+    @JoinColumn(name = "activities_id")
+    private Activities activities;
+
     public Block() {
     }
 
@@ -50,5 +54,17 @@ public class Block {
 
     public void setEndTime(Instant endTime) {
         this.endTime = endTime;
+    }
+
+    public Instant getEndTime() {
+        return endTime;
+    }
+
+    public Activities getActivities() {
+        return activities;
+    }
+
+    public void setActivities(Activities activities) {
+        this.activities = activities;
     }
 }
